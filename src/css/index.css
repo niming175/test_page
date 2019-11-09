@@ -1,0 +1,71 @@
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.box #imgul {
+  width: 100%;
+  max-width: 1920px;
+  height: 400px;
+  padding: 0;
+  margin: 0;
+}
+
+.box #imgul li {
+  width: 100%;
+  max-width: 1920px;
+  height: 400px;
+}
+
+.box #imgul li img {
+  width: 100%;
+  max-width: 1920px;
+  height: 400px;
+  display: block;
+  float: left;
+}
+
+.box span {
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  width: 30px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 40px;
+}
+
+.box #left {
+  left: 0px;
+}
+
+.box #right {
+  right: 0px;
+}
+
+.box ol {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}
+
+.box ol li {
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  font-size: 15px;
+  line-height: 20px;
+  float: left;
+  margin: 0px 3px;
+  text-align: center;
+}
+
+.box ol .active {
+  background: #fff;
+  color: red;
+}
