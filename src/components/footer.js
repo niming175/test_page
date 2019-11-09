@@ -6,7 +6,7 @@ export const footer = () => {
       </div>
     </div>
     <style>
-      @import url('src/components/footer.css')
+      @import url('/src/components/footer.css')
     </style>
   `
 }

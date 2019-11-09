@@ -10,17 +10,17 @@ export const header = () => {
         </div>
         <div class="header__nav flex--1 align--right">
           <a href='/'>首页</a>
-          <a href='/src/page/news.html' target="blank">
+          <a href='/src/pages/news.html' target="blank">
             新闻
           </a>
-          <a href="/src/page/about.html">
+          <a href="/src/pages/about.html">
             关于我们
           </a>
         </div>
       </div>
     </div>
     <style>
-      @import url('src/components/header.css')
+      @import url('/src/components/header.css')
     </style>
   `
 }
