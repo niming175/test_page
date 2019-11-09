@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>新闻页面</title>
+  <style>
+    @import url('./src/css/style.css');
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+  <div id="content" class="content container">
+    新闻页面
+  </div>
+  <div id="footer"></div>
+</body>
+</html>
+<script type="module">
+  import { load } from './main.js'
+  import { header } from './src/components/header.js'
+  import { footer } from './src/components/footer.js'
+
+  // 初始加载
+  load();
+
+  // 插入组件
+  $('#header').append(header());
+  $('#footer').append(footer());
+
+</script>
+
+<style>
+.content {
+  min-height: calc(100vh - 64px - 120px);
+}
+</style>
