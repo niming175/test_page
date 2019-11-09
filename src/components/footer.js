@@ -5,8 +5,5 @@ export const footer = () => {
         页脚
       </div>
     </div>
-    <style>
-      @import url('/src/components/footer.css')
-    </style>
   `
 }

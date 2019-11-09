@@ -1,3 +1,6 @@
+
+@import url('header.css');
+@import url('footer.css');
 /* 公用样式 */
 body {
   margin: 0;
