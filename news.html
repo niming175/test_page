@@ -4,35 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>新闻页面</title>
+  <title>列表页面</title>
   <style>
     @import url('./src/css/style.css');
+    @import url('./src/css/news.css');
+    @import url('./src/css/listCard.css');
   </style>
 </head>
 <body>
   <div id="header"></div>
   <div id="content" class="content container">
-    新闻页面
+    <h1>列表页面</h1>
+    <hr>
+    <div class="news__list-wrapper">
+      <div class="loading"></div>
+      <div class="news__list">
+        列表
+      </div>
+    </div>
   </div>
   <div id="footer"></div>
 </body>
 </html>
+<script src="./src/script/axios.min.js"></script>
+<script src="./src/script/moment.js"></script>
 <script type="module">
-  import { load } from './main.js'
+  import './src/script/jquery-3.4.1.min.js'
   import { header } from './src/components/header.js'
   import { footer } from './src/components/footer.js'
+  import { loading } from './src/components/loading.js'
+  import { listCard } from './src/components/listCard.js'
+
+  const fetch = async (page = 1) => { 
+    $('.loading').show();
+    try {
+      const response = await axios.get(
+        'http://mock-api.com/wnaR69K1.mock/api/news', 
+        {
+          params: {
+            page: 1
+          }
+        }
+      )
+
+      const { data: {data} } = response
+
+      var html = '';
+
+      if (!data || !data.length){
+        $('.news__list').html(
+          `
+            <p class="align--center">
+              404 not found
+            </p>
+          `
+        )
+        $('.loading').hide()
+        return
+      }
+      data.forEach(item => {
+        html += `
+          <a class="news__list-card" href="news_page.html?id=${item.id}" target="_blank">
+            ${listCard(item)}
+          </a>`
+      })
+
+      $('.news__list').html(html)
+    } catch (e) {
+      console.log(e)
+    }
+
+    $('.loading').hide()
+  }
 
   // 初始加载
-  load();
-
-  // 插入组件
-  $('#header').append(header());
-  $('#footer').append(footer());
-
+  $(function() {
+    // 插入组件
+    $('#header').html(header());
+    $('#footer').html(footer());
+    $('.loading').html(loading()).hide();
+  
+    fetch();
+  })
+  
 </script>
-
-<style>
-.content {
-  min-height: calc(100vh - 64px - 120px);
-}
-</style>

@@ -14,27 +14,56 @@
 
 <body>
   <div id="header"></div>
-  <!-- 轮播图 -->
-  <div class='box'>
-    <ul id="imgul">
-      <li><img src="./src/image/banner_01.jpeg" alt=""></li>
-      <li><img src="./src/image/banner_02.jpg" alt=""></li>
-      <li><img src="./src/image/banner_03.jpg" alt=""></li>
-      <li><img src="./src/image/banner_01.jpeg" alt=""></li>
-      <li><img src="./src/image/banner_02.jpg" alt=""></li>
-    </ul>
-    <div class="container">
-      <ol>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-      </ol>
+  <div class="content">
+    <!-- 轮播图 -->
+    <div class='box content__banner'>
+      <ul id="imgul">
+        <li>
+          <embed src="./src/image/index/banner.svg"type="image/svg+xml" />
+        </li>
+        <li>
+          <embed src="./src/image/index/banner_01.svg"type="image/svg+xml" />
+        </li>
+        <li>
+          <embed src="./src/image/index/banner.svg"type="image/svg+xml" />
+        </li>
+      </ul>
+      <div class="container">
+        <ol>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ol>
+      </div>
     </div>
-  </div>
-  <div id="content" class="content container">
-    内容
+    <div class="container">
+      <div class="content__info-card"></div>
+      <div class="flex flex__align--middle content__hot">
+        <div class="flex--1 content-hot__img">
+          <img src="./src/image/index/img_01.png" />
+        </div>
+        <div class="flex--1 content-hot__right">
+          <h2 class="content-hot__title">Image with text</h2>
+          <p>
+            Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.
+          </p>
+          <p>
+            <a href="./news.html" class="content-hot__button btn btn--primary btn--lg">
+              Learn More
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="content__foot">
+      <div class="container">
+        <h1 class="content-foot__title">Content Footer</h1>
+        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information....</p>
+        <a href="./news.html" class="btn btn--lg btn--primary">
+          Learn More
+        </a>
+      </div>
+    </div>
   </div>
   <div id="footer"></div>
 </body>
@@ -42,8 +71,10 @@
 </html>
 <script type="module">
   import { load } from './main.js'
+  import { infoCardData } from './src/util/settings.js'
   import { header } from './src/components/header.js'
   import { footer } from './src/components/footer.js'
+  import { infoCard } from './src/components/infoCard.js'
 
   // 初始加载
   load();
@@ -51,10 +82,7 @@
   // 插入组件
   $('#header').append(header());
   $('#footer').append(footer());
-
-  // function $(names) {
-  //   return document.getElementById(names);
-  // }
+  $('.content__info-card').append(infoCard(infoCardData))
 
   var box = document.getElementsByClassName('box')[0];
   var li_list = document.querySelectorAll('#imgul li'); //获取图片的li
@@ -63,41 +91,42 @@
   var count = 0;
 
   function auto() { //执行自动轮播
-      count++;
-      if (count > li_list.length - 1) {
-        count = 0;
-      }
-      for (var i = 0; i < li_list.length; i++) {
+    count++;
+    if (count > li_list.length - 1) {
+      count = 0;
+    }
+    for (var i = 0; i < li_list.length; i++) {
+      li_list[i].style = 'display:none;';
+      ol_list[i].className = '';
+    }
+    li_list[count].style = 'display:block;'
+    ol_list[count].className = 'active';
+
+  }
+
+  timer = setInterval(auto, 2500); //调用定时器
+
+  box.onmouseover = function () { //鼠标划上去，停止轮播
+    clearInterval(timer);
+  }
+  box.onmouseout = function () { //鼠标划出，继续轮播
+    timer = setInterval(auto, 2500); //调用定时器
+  }
+
+
+  //点击小按钮，切换图片
+  for (var j = 0; j < ol_list.length; j++) {
+    ol_list[j].ind = j; //为每个小按钮添加下标
+    ol_list[j].onclick = function () { //进入点击事件
+      for (var i = 0; i < li_list.length; i++) { //干掉所有人
         li_list[i].style = 'display:none;';
         ol_list[i].className = '';
       }
-      li_list[count].style = 'display:block;'
-      ol_list[count].className = 'active';
-
+      li_list[this.ind].style = 'display:block;'; //留下我自己
+      ol_list[this.ind].className = 'active'; //留下我自己
+      count = this.ind; // 把当前的角标值赋值给count 希望他从当前再开始
     }
-    timer = setInterval(auto, 2500); //调用定时器
-
-    box.onmouseover = function () { //鼠标划上去，停止轮播
-      clearInterval(timer);
-    }
-    box.onmouseout = function () { //鼠标划出，继续轮播
-      timer = setInterval(auto, 2500); //调用定时器
-    }
-
-
-    //点击小按钮，切换图片
-    for (var j = 0; j < ol_list.length; j++) {
-      ol_list[j].ind = j; //为每个小按钮添加下标
-      ol_list[j].onclick = function () { //进入点击事件
-        for (var i = 0; i < li_list.length; i++) { //干掉所有人
-          li_list[i].style = 'display:none;';
-          ol_list[i].className = '';
-        }
-        li_list[this.ind].style = 'display:block;'; //留下我自己
-        ol_list[this.ind].className = 'active'; //留下我自己
-        count = this.ind; // 把当前的角标值赋值给count 希望他从当前再开始
-      }
-    }
+  }
 </script>
 
 <style>

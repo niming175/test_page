@@ -1,0 +1,24 @@
+/* 列表页面 */
+.news__list-wrapper {
+  min-height: 200px;
+  width: 100%;
+  position: relative;
+}
+
+.news__loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #cccccc15 ;
+  top: 99;
+}
+
+.news__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.news__list-card {
+  width: calc((100% - 12px * 4) / 4);
+  margin: 6px;
+}

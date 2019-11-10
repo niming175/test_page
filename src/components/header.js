@@ -11,7 +11,7 @@ export const header = () => {
         <div class="header__nav flex--1 align--right">
           <a href='./'>首页</a>
           <a href='./news.html' target="blank">
-            新闻
+            列表
           </a>
           <a href="./about.html">
             关于我们

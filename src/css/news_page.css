@@ -1,0 +1,19 @@
+.content__article {
+  min-height: 400px;
+  position: relative;
+  padding: 20px 0;
+}
+
+.article__name {
+  font-size: 13px;
+  color: #555;
+}
+.article__time {
+  font-size: 13px;
+  color: #555555;
+  margin-left: 20px;
+}
+
+.article__content {
+  margin-top: 40px;
+}

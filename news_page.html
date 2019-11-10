@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章页</title>
+
+  <style>
+    @import url('./src/css/style.css');
+    @import url('./src/css/news_page.css');
+  </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="content" class="content container">
+      <h1>文章页</h1>
+      <hr>
+      <div class="content__article">
+        <div class="loading"></div>
+        <div class="article">
+          <h3 class="align--center article__title"></h3>
+          <p class="align--center">
+            <span class="article__name"></span>
+            <span class="article__time"></span>
+          </p>
+
+          <div class="article__content">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
+
+<script src="./src/script/axios.min.js"></script>
+<script src="./src/script/moment.js"></script>
+<script type="module">
+  import './src/script/jquery-3.4.1.min.js'
+  import { header } from './src/components/header.js'
+  import { footer } from './src/components/footer.js'
+  import { loading } from './src/components/loading.js'
+  import { mockApi } from './src/util/settings.js'
+
+  // 初始加载
+  $(function() {
+    // 插入组件
+    $('#header').html(header());
+    $('#footer').html(footer());
+    $('.loading').html(loading()).hide();
+    
+    fetch();
+  })
+
+  const fetch = async () => {
+    $('.loading').show()
+    try {
+      const response = await axios.get(
+        `${mockApi}/api/news/1`
+      )
+      const { data: {data} } = response
+      
+      if (!data) {
+        $('.article').html(`
+          <p class="align--center">
+            404 not found
+          </p>
+        `);
+
+        return
+      }
+
+      const { name, title, createdAt, content } = data;
+
+      $('.article__title').html(title)
+      $('.article__name').html(`@by:${name}`)
+      $('.article__time').html(moment(createdAt).format('ll'))
+      $('.article__content').html(content)
+
+    } catch (e) {
+      console.log(e)
+    }
+
+    $('.loading').hide()
+  }
+</script>

@@ -1,0 +1,26 @@
+.info-card {
+  display: flex;
+}
+.info-card p {
+  margin: 0;
+  line-height: 1;
+}
+.info-card .info-card__body {
+  flex: 1;
+  margin: 0 12px;
+  text-align: center;
+}
+.info-card .info-card__img {
+  width: 180px;
+  max-width: 100%;
+}
+.info-card .info-card__title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin-top: 12px;
+}
+.info-card .info-card__desc {
+  font-size: 14px;
+  margin-top: 15px;
+}

@@ -1,8 +1,10 @@
+@import url('./infoCard.css');
+
 .box {
   position: relative;
   width: 100%;
   max-width: 1920px;
-  height: 400px;
+  height: 600px;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -10,7 +12,7 @@
 .box #imgul {
   width: 100%;
   max-width: 1920px;
-  height: 400px;
+  min-height: 400px;
   padding: 0;
   margin: 0;
 }
@@ -18,15 +20,16 @@
 .box #imgul li {
   width: 100%;
   max-width: 1920px;
-  height: 400px;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
-.box #imgul li img {
-  width: 100%;
-  max-width: 1920px;
-  height: 400px;
+.box #imgul li embed {
+  min-height: 100%;
+  min-width: 100%;
   display: block;
-  float: left;
 }
 
 .box span {
@@ -63,9 +66,55 @@
   float: left;
   margin: 0px 3px;
   text-align: center;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid #ccc;
 }
 
 .box ol .active {
   background: #fff;
   color: red;
+}
+
+.content__banner {
+  border-bottom: 1px solid #ccc;
+}
+
+.content__info-card {
+  margin-top: 80px;
+}
+.content__hot {
+  margin-top: 80px;
+}
+.content-hot__img img {
+  width: 100%;
+}
+
+.content-hot__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.content-hot__right {
+  padding: 0 30px;
+}
+.content-hot__button {
+  margin-top: 20px;
+}
+
+.content__foot {
+  margin-top: 80px;
+  background-color: #eee;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.content__foot p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+
+.content__foot .btn {
+  margin-top: 20px; 
 }
