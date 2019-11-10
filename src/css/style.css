@@ -1,7 +1,7 @@
 
 @import url('header.css');
 @import url('footer.css');
-/* @import url('pagination.css'); */
+@import url('pagination.css');
 
 /* 公用样式 */
 body {
