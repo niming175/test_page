@@ -38,4 +38,5 @@ export const infoCardData = [
   }
 ]
 
-export const mockApi = 'http://mock-api.com/wnaR69K1.mock'
+// export const mockApi = 'http://mock-api.com/wnaR69K1.mock'
+export const mockApi = 'https://5dc7c676672b6e001426b230.mockapi.io'

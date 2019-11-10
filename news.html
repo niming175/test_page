@@ -19,9 +19,11 @@
     <div class="news__list-wrapper">
       <div class="loading"></div>
       <div class="news__list">
-        列表
       </div>
     </div>
+
+    <!-- 分页 -->
+    <div class="content__pagination"></div>
   </div>
   <div id="footer"></div>
 </body>
@@ -34,12 +36,14 @@
   import { footer } from './src/components/footer.js'
   import { loading } from './src/components/loading.js'
   import { listCard } from './src/components/listCard.js'
+  import { pagination } from './src/components/pagination.js'
+  import { mockApi } from './src/util/settings.js'
 
   const fetch = async (page = 1) => { 
     $('.loading').show();
     try {
       const response = await axios.get(
-        'http://mock-api.com/wnaR69K1.mock/api/news', 
+        `${mockApi}/api/v1/news`, 
         {
           params: {
             page: 1
@@ -47,11 +51,11 @@
         }
       )
 
-      const { data: {data} } = response
+      const { data: {items} } = response
 
       var html = '';
 
-      if (!data || !data.length){
+      if (!items || !items.length){
         $('.news__list').html(
           `
             <p class="align--center">
@@ -62,7 +66,7 @@
         $('.loading').hide()
         return
       }
-      data.forEach(item => {
+      items.forEach(item => {
         html += `
           <a class="news__list-card" href="news_page.html?id=${item.id}" target="_blank">
             ${listCard(item)}
@@ -83,6 +87,7 @@
     $('#header').html(header());
     $('#footer').html(footer());
     $('.loading').html(loading()).hide();
+    $('.content__pagination').html(pagination())
   
     fetch();
   })

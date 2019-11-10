@@ -58,9 +58,9 @@
     $('.loading').show()
     try {
       const response = await axios.get(
-        `${mockApi}/api/news/1`
+        `${mockApi}/api/v1/news/1`
       )
-      const { data: {data} } = response
+      const { data } = response
       
       if (!data) {
         $('.article').html(`
