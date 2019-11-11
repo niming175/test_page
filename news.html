@@ -46,7 +46,8 @@
         `${mockApi}/api/v1/news`, 
         {
           params: {
-            page: 1
+            page,
+            limit: 10
           }
         }
       )
@@ -87,8 +88,16 @@
     $('#header').html(header());
     $('#footer').html(footer());
     $('.loading').html(loading()).hide();
-    $('.content__pagination').html(pagination())
+    $('.content__pagination').html(pagination(1, 63))
   
+    $('.pagination li a').click(function(dom) {
+      var page = $(this).attr('page')
+      fetch(page)
+
+      $('.pagination li').removeClass('active')
+      $(this).parent('li').addClass('active')
+    })
+
     fetch();
   })
   
